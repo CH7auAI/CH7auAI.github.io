@@ -1,8 +1,8 @@
-title: Hamilton
-description: A minimal and beautiful Jekyll theme best for writing and note-taking.
-author: Shangzhi Huang
+title: CH7au Tech. Workspace
+description: Fantastic ideas on artificial intelligent.
+author: Chenhui Liu
 avatar: /logo.png
-email: ngzhio@gmail.com
+email: jason.lchwork@gmail.com
 
 plugins:
   - jekyll-seo-tag
@@ -11,6 +11,7 @@ plugins:
   - jekyll-paginate
 
 paginate: 10
+skin: daylight
 
 # Uncomment the below line and set the tracking ID for enabling Google Analytics
 # 
@@ -26,18 +27,3 @@ exclude:
   - scripts/
   - README.md
   - jekyll-theme-hamilton.gemspec
-
-# Jekyll SEO Tag (Optional)
-# =========================
-twitter:
-  username: ngzhio
-  card: summary
-logo: logo.png
-social:
-  name: Shangzhi Huang
-  links:
-    - https://twitter.com/ngzhio
-    - https://www.facebook.com/ngzhio
-    - https://github.com/ngzhio
-google_site_verification: u4WXQl0Eu66rsQo2kRdCNx
-lang: en
