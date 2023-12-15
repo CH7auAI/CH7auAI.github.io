@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-15T15:40:46+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">CH7au Tech. Workspace</title><subtitle>Fantastic ideas on artificial intelligent.</subtitle><author><name>Chenhui Liu</name></author><entry><title type="html">KBQA Task</title><link href="http://localhost:4000/llmxkg/2023/12/15/KBQA-Task.html" rel="alternate" type="text/html" title="KBQA Task" /><published>2023-12-15T00:00:00+08:00</published><updated>2023-12-15T00:00:00+08:00</updated><id>http://localhost:4000/llmxkg/2023/12/15/KBQA-Task</id><content type="html" xml:base="http://localhost:4000/llmxkg/2023/12/15/KBQA-Task.html"><![CDATA[<p><strong>Table of Contents</strong></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-15T15:44:17+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">CH7au Tech. Workspace</title><subtitle>Fantastic ideas on artificial intelligent.</subtitle><author><name>Chenhui Liu</name></author><entry><title type="html">KBQA Task</title><link href="http://localhost:4000/llmxkg/2023/12/15/KBQA-Task.html" rel="alternate" type="text/html" title="KBQA Task" /><published>2023-12-15T00:00:00+08:00</published><updated>2023-12-15T00:00:00+08:00</updated><id>http://localhost:4000/llmxkg/2023/12/15/KBQA-Task</id><content type="html" xml:base="http://localhost:4000/llmxkg/2023/12/15/KBQA-Task.html"><![CDATA[<p><strong>Table of Contents</strong></p>
 <ul>
   <li><a href="#freebase-deploy-locally">FreeBase Deploy Locally</a></li>
 </ul>
@@ -25,7 +25,7 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://www.dropbox.com/s/q38g0fwx1a3lz8q/virtuoso_db.zip
 </code></pre></div></div>
 
-<h2 id="step-2-unzip-the-database-compressed-file-place-the-directory-at-the-right-place">Step 2: Unzip the database compressed file。 Place the directory at the right place</h2>
+<h2 id="step-2-unzip-the-database-compressed-file-place-the-directory-at-the-right-place">Step 2: Unzip the database compressed file. Place the directory at the right place</h2>
 
 <p><strong>Notice</strong>：The uncompressed database file taske at least 150G room of your system.</p>
 
