@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>KBQA Task | CH7au Tech. Workspace</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="KBQA Task" />
+<meta name="author" content="Chenhui Liu" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Table of Contents FreeBase Deploy Locally" />
+<meta property="og:description" content="Table of Contents FreeBase Deploy Locally" />
+<link rel="canonical" href="http://localhost:4000/llmxkg/2023/12/15/KBQA-Task.html" />
+<meta property="og:url" content="http://localhost:4000/llmxkg/2023/12/15/KBQA-Task.html" />
+<meta property="og:site_name" content="CH7au Tech. Workspace" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-12-15T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="KBQA Task" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Chenhui Liu"},"dateModified":"2023-12-15T00:00:00+08:00","datePublished":"2023-12-15T00:00:00+08:00","description":"Table of Contents FreeBase Deploy Locally","headline":"KBQA Task","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/llmxkg/2023/12/15/KBQA-Task.html"},"url":"http://localhost:4000/llmxkg/2023/12/15/KBQA-Task.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="CH7au Tech. Workspace" />
+
+
+
+
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open%20Sans|Roboto|Roboto%20Slab|Inconsolata|Dancing%20Script|Noto%20Sans%20SC|Noto%20Sans%20TC|Noto%20Serif%20SC|Noto%20Serif%20TC|Ma%20Shan%20Zheng">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/skin.css">
+
+<!-- Begin selecting skin -->
+
+<!-- End selecting skin -->
+
+<script async src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+
+
+  </head>
+
+  <body>
+    <div class="site-container">
+      <header class="site-header">
+        <div class="wrapper">
+  <script>
+    function clickSidebarButton() {
+      const elem = document.getElementById("site-sidebar")
+      if (elem.style.display == "none" || elem.style.display == "") {
+        elem.style.display = "block";
+      } else {
+        elem.style.display = "none";
+      }
+    }
+  </script>
+  <a class="site-sidebar-button" onclick="clickSidebarButton()"><i class="far fa-user"></i>
+  </a>
+
+  <a class="site-title" rel="author" href="/">CH7au Tech. Workspace</a>
+
+  
+    <nav class="site-nav">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+      <label for="nav-trigger" title="nav-trigger">
+        <span class="menu-icon">
+          <svg viewBox="0 0 18 15" width="18px" height="15px">
+            <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+          </svg>
+        </span>
+      </label>
+
+      <ul class="trigger">
+              <li><a class="" href="/about/">About</a></li>
+            
+              <li><a class="" href="/years/">Years</a></li>
+            
+              <li><a class="" href="/categories/">Categories</a></li>
+            
+              <li><a class="" href="/tags/">Tags</a></li>
+            </ul>
+    </nav>
+  
+</div>
+
+      </header>
+      
+      <div class="site-body wrapper">
+        <aside class="site-sidebar" id="site-sidebar">
+          
+            <div class="sidebar-section"><img src="/logo.jpg" class="author-avatar u-photo align-center" alt="Chenhui Liu">
+  </div>
+
+<div class="sidebar-section">
+  <ul class="contact-list">
+    <li>
+        <i class="sidebar-icon fas fa-at"></i>
+        <span class="contact-info p-name">Chenhui Liu</span>
+      </li>
+    <li>
+        <i class="sidebar-icon fas fa-envelope"></i>
+        <a class="contact-info u-email" href="mailto:jason.lchwork@gmail.com">jason.lchwork@gmail.com</a>
+      </li>
+    
+  </ul>
+</div>
+
+<div class="sidebar-section feed-subscribe">
+  <a href="/feed.xml">
+    <i class="sidebar-icon fas fa-rss"></i><span>Subscribe</span>
+  </a>
+</div>
+
+<div class="sidebar-section">
+    <ul class="social-icons">
+      <li>
+          <a class="social-icon" href="https://github.com/CH7auAI"><i class="fab fa-github fa-2x" title="GitHub"></i></a>
+        </li>
+    </ul>
+  </div>
+
+          
+        </aside>
+        <main class="site-main" id="site-main" aria-label="Content" tabindex="1">
+          <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+
+    <h1 class="post-title p-name" itemprop="name headline">KBQA Task</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2023-12-15T00:00:00+08:00" itemprop="datePublished">
+        Dec 15, 2023
+      </time></p>
+
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><strong>Table of Contents</strong></p>
+<ul>
+  <li><a href="#freebase-deploy-locally">FreeBase Deploy Locally</a></li>
+</ul>
+
+<h1 id="freebase-deploy-locally">FreeBase Deploy Locally</h1>
+
+<p>Refer to the following Github Source Code：<a href="https://github.com/dki-lab/Freebase-Setup">dki-lab/Freebase-Setup</a></p>
+
+<p>Recommended system configuration</p>
+<ul>
+  <li>Disk：200G+</li>
+  <li>Memory：100G+</li>
+</ul>
+
+<h2 id="step-1-clone-source-code-download-database-file">Step 1: Clone Source Code, download database file</h2>
+
+<p>Clone source code of <code class="language-plaintext highlighter-rouge">Freebase-Setup</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone git@github.com:dki-lab/Freebase-Setup.git
+</code></pre></div></div>
+
+<p>The virtuoso DB file can be downloaded from either this <a href="https://buckeyemailosu-my.sharepoint.com/personal/su_809_osu_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fsu%5F809%5Fosu%5Fedu%2FDocuments%2Fvirtuoso%5Fdb%2Ezip&amp;parent=%2Fpersonal%2Fsu%5F809%5Fosu%5Fedu%2FDocuments&amp;ga=1">OneDrive link</a>, <a href="https://www.dropbox.com/s/q38g0fwx1a3lz8q/virtuoso_db.zip">Dropbox link</a> or via wget (WARNING: 53G+ disk space is needed):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://www.dropbox.com/s/q38g0fwx1a3lz8q/virtuoso_db.zip
+</code></pre></div></div>
+
+<h2 id="step-2-unzip-the-database-compressed-file-place-the-directory-at-the-right-place">Step 2: Unzip the database compressed file。 Place the directory at the right place</h2>
+
+<p><strong>Notice</strong>：The uncompressed database file taske at least 150G room of your system.</p>
+
+<pre><code class="language-base">$ pwd
+/path/to/Freebase-Setup-master
+
+$ ls -lh
+total 284K
+-rw-rw-r-- 1 liuchenhui liuchenhui 6.9K 7月  16 11:21 LICENSE
+-rw-rw-r-- 1 liuchenhui liuchenhui 4.1K 7月  16 11:21 README.md
+-rw-rw-r-- 1 liuchenhui liuchenhui 1.4K 7月  16 11:21 fix_freebase_literal_format.py
+-rw-rw-r-- 1 liuchenhui liuchenhui 253K 7月  16 11:21 numeric_properties.txt
+-rw-rw-r-- 1 liuchenhui liuchenhui 4.6K 12月 15 10:46 virtuoso.py
+drwxr-xr-x 2 liuchenhui liuchenhui   33 12月 16  2020 virtuoso_db
+</code></pre>
+
+<h2 id="step-3-startstop-freebase-database">Step 3: Start/Stop freebase database</h2>
+
+<p>To start database</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 virtuoso.py start 8890 <span class="nt">-d</span> virtuoso_db
+
+<span class="nv">$ </span>ps aux |grep virtuoso
+liuchen+ 2203338 27.7  8.2 43393876 21804648 ?   Ssl  14:42   0:22 /path/to/virtuoso-opensource/bin/virtuoso-t +configfile virtuoso_db/virtuoso.ini +wait
+liuchen+ 2229820  0.0  0.0  19360  2692 pts/0    S+   14:44   0:00 <span class="nb">grep</span> <span class="nt">--color</span><span class="o">=</span>auto virtuoso
+
+<span class="nv">$ </span>lsof <span class="nt">-i</span>:8890
+COMMAND       PID       USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
+virtuoso- 2203338 liuchenhui   12u  IPv4 1803532297      0t0  TCP <span class="k">*</span>:8890 <span class="o">(</span>LISTEN<span class="o">)</span>
+</code></pre></div></div>
+
+<p>To stop database</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 virtuoso.py stop 8890
+
+<span class="nv">$ </span>ps aux |grep virtuoso
+liuchen+ 3089772  0.0  0.0  19360  2960 pts/0    S+   15:28   0:00 <span class="nb">grep</span> <span class="nt">--color</span><span class="o">=</span>auto virtuoso
+</code></pre></div></div>
+
+<h2 id="step-4-verify-freebase-setup">Step 4: Verify Freebase setup</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!/usr/bin/env python3
+</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">SPARQLWrapper</span> <span class="kn">import</span> <span class="n">SPARQLWrapper</span><span class="p">,</span> <span class="n">JSON</span>
+
+<span class="n">SPARQLPATH</span> <span class="o">=</span> <span class="s">"http://localhost:8890/sparql"</span>
+
+<span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">sparql</span> <span class="o">=</span> <span class="n">SPARQLWrapper</span><span class="p">(</span><span class="n">SPARQLPATH</span><span class="p">)</span>
+        <span class="n">sparql_txt</span> <span class="o">=</span> <span class="s">"""PREFIX ns: &lt;http://rdf.freebase.com/ns/&gt;
+            SELECT distinct ?name3
+            WHERE {
+            ns:m.0k2kfpc ns:award.award_nominated_work.award_nominations ?e1.
+            ?e1 ns:award.award_nomination.award_nominee ns:m.02pbp9.
+            ns:m.02pbp9 ns:people.person.spouse_s ?e2.
+            ?e2 ns:people.marriage.spouse ?e3.
+            ?e2 ns:people.marriage.from ?e4.
+            ?e3 ns:type.object.name ?name3
+            MINUS{?e2 ns:type.object.name ?name2}
+            }
+        """</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">sparql_txt</span><span class="p">)</span>
+        <span class="n">sparql</span><span class="p">.</span><span class="n">setQuery</span><span class="p">(</span><span class="n">sparql_txt</span><span class="p">)</span>
+        <span class="n">sparql</span><span class="p">.</span><span class="n">setReturnFormat</span><span class="p">(</span><span class="n">JSON</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">sparql</span><span class="p">.</span><span class="n">query</span><span class="p">().</span><span class="n">convert</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Your database is not installed properly !!!'</span><span class="p">)</span>
+
+<span class="n">test</span><span class="p">()</span>
+</code></pre></div></div>
+
+  </div>
+
+  <footer class="post-footer">
+    
+      <div class="post-meta">
+        <i class="fas fa-folder"></i>
+        <ul class="post-taxonomies post-categories">
+          
+          
+            <li class="post-category">
+              
+              <a href="/categories/#llmxkg">LLMxKG</a>
+            </li>
+          
+        </ul>
+      </div>
+    
+
+    
+      <div class="post-meta">
+        <i class="fas fa-tags"></i>
+        <ul class="post-taxonomies post-tags">
+          
+          
+            <li class="post-tag">
+              
+              <a href="/tags/#kbqa">kbqa</a>
+            </li>
+          
+        </ul>
+      </div>
+    
+
+    <nav class="post-pagination" role="navigation">
+      
+        <a class="post-previous" href="/2023/12/14/First-Page-Online.html">
+          <h4 class="post-pagination-label">Prev</h4>
+          <span class="post-pagination-title">
+            <i class="fas fa-arrow-left"></i> First Page Online
+
+          </span>
+        </a>
+      
+
+      
+    </nav>
+  </footer>
+
+  
+  
+</article>
+
+          <footer class="site-footer">
+            <div class="footer-col-wrapper">
+
+  <div class="footer-col">
+    <div class="copyright">
+      
+      
+      
+      
+      <p>Copyright © 2023 Chenhui Liu; All rights reserved.</p>
+      
+    </div>
+    <p>
+      Powered by <a href="https://jekyllrb.com/">Jekyll</a> & <a href="https://github.com/ngzhio/jekyll-theme-hamilton">Hamilton</a>
+    </p>
+  </div>
+
+  <div class="footer-col">
+    <p>Fantastic ideas on artificial intelligent.</p>
+  </div>
+</div>
+
+          </footer>
+        </main>
+      </div>
+    </div>
+  </body>
+
+</html>
