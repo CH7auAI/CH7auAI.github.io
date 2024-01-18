@@ -139,7 +139,71 @@
   </header>
 
   <div class="post-content">
-    
+    <ul>
+  <li><a href="#ssh-keygen">SSH-KeyGen</a></li>
+  <li><a href="#vscode-snippets">VSCode Snippets</a></li>
+  <li><a href="#nvidia-drivercudacudnn">NVIDIA Driver/CUDA/CUDNN</a></li>
+</ul>
+
+<h1 id="ssh-keygen">SSH-KeyGen</h1>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-keygen
+ssh-keygen <span class="nt">-t</span> ed25519 <span class="nt">-C</span> <span class="s2">"your_email@example.com"</span>
+ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 4096 <span class="nt">-C</span> <span class="s2">"your_email@example.com"</span>
+</code></pre></div></div>
+
+<h1 id="vscode-snippets">VSCode Snippets</h1>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+	</span><span class="err">//</span><span class="w"> </span><span class="err">Place</span><span class="w"> </span><span class="err">your</span><span class="w"> </span><span class="err">snippets</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">python</span><span class="w"> </span><span class="err">here.</span><span class="w"> </span><span class="err">Each</span><span class="w"> </span><span class="err">snippet</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">defined</span><span class="w"> </span><span class="err">under</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">snippet</span><span class="w"> </span><span class="err">name</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">has</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">prefix</span><span class="p">,</span><span class="w"> </span><span class="err">body</span><span class="w"> </span><span class="err">and</span><span class="w"> 
+	</span><span class="err">//</span><span class="w"> </span><span class="err">description.</span><span class="w"> </span><span class="err">The</span><span class="w"> </span><span class="err">prefix</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">what</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">used</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">trigger</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">snippet</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">body</span><span class="w"> </span><span class="err">will</span><span class="w"> </span><span class="err">be</span><span class="w"> </span><span class="err">expanded</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">inserted.</span><span class="w"> </span><span class="err">Possible</span><span class="w"> </span><span class="err">variables</span><span class="w"> </span><span class="err">are:</span><span class="w">
+	</span><span class="err">//</span><span class="w"> </span><span class="err">$</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="mi">2</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">tab</span><span class="w"> </span><span class="err">stops</span><span class="p">,</span><span class="w"> </span><span class="err">$</span><span class="mi">0</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">final</span><span class="w"> </span><span class="err">cursor</span><span class="w"> </span><span class="err">position</span><span class="p">,</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="mi">1</span><span class="err">:label</span><span class="p">},</span><span class="w"> </span><span class="err">$</span><span class="p">{</span><span class="mi">2</span><span class="err">:another</span><span class="p">}</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">placeholders.</span><span class="w"> </span><span class="err">Placeholders</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">the</span><span class="w"> 
+	</span><span class="err">//</span><span class="w"> </span><span class="err">same</span><span class="w"> </span><span class="err">ids</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">connected.</span><span class="w">
+	</span><span class="err">//</span><span class="w"> </span><span class="err">Example:</span><span class="w">
+	</span><span class="err">//</span><span class="w"> </span><span class="nl">"Print to console"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+	</span><span class="err">//</span><span class="w"> 	</span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"log"</span><span class="p">,</span><span class="w">
+	</span><span class="err">//</span><span class="w"> 	</span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+	</span><span class="err">//</span><span class="w"> 		</span><span class="s2">"console.log('$1');"</span><span class="p">,</span><span class="w">
+	</span><span class="err">//</span><span class="w"> 		</span><span class="s2">"$2"</span><span class="w">
+	</span><span class="err">//</span><span class="w"> 	</span><span class="p">],</span><span class="w">
+	</span><span class="err">//</span><span class="w"> 	</span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Log output to console"</span><span class="w">
+	</span><span class="err">//</span><span class="w"> </span><span class="p">}</span><span class="w">
+	</span><span class="nl">"HEADER"</span><span class="p">:{</span><span class="w">
+		</span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"header"</span><span class="p">,</span><span class="w">
+			</span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+			
+			</span><span class="s2">"#!/usr/bin/env python3"</span><span class="p">,</span><span class="w">
+			</span><span class="s2">"# -*- encoding: utf-8 -*-"</span><span class="p">,</span><span class="w">
+			</span><span class="s2">"</span><span class="se">\"\"\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+			</span><span class="s2">"@File    :   $TM_FILENAME"</span><span class="p">,</span><span class="w">
+			</span><span class="s2">"@Time    :   $CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND"</span><span class="p">,</span><span class="w">
+			</span><span class="s2">"@Author  :   liuchenhui"</span><span class="p">,</span><span class="w">
+			</span><span class="s2">"@Contact :   jason_lchwork@163.com"</span><span class="p">,</span><span class="w">
+			</span><span class="s2">"@Desc    :   None"</span><span class="p">,</span><span class="w">
+			</span><span class="s2">"</span><span class="se">\"\"\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+			</span><span class="s2">""</span><span class="w">
+		</span><span class="p">]</span><span class="w">
+	</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h1 id="nvidia-drivercudacudnn">NVIDIA Driver/CUDA/CUDNN</h1>
+
+<ul>
+  <li><a href="https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html">CUDA ToolKit Latest Documentation</a></li>
+  <li><a href="https://anaconda.org/nvidia/cuda-toolkit">Conda CUDA ToolKit Installation Documentation</a></li>
+</ul>
+
+<blockquote>
+  <p>CUDA: 11.8
+Nvidia Driver: &gt;=450.80.02</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda create <span class="nt">-n</span> pytorch201_cuda118 <span class="nv">python</span><span class="o">=</span>3.9
+conda activate pytorch201_cuda118
+conda <span class="nb">install</span> <span class="nt">-c</span> <span class="s2">"nvidia/label/cuda-11.8.0"</span> cuda-toolkit
+nvcc <span class="nt">--version</span>
+</code></pre></div></div>
 
   </div>
 
