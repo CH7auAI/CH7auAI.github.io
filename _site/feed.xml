@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-18T17:09:55+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">CH7au Tech. Blog</title><subtitle>Fantastic ideas on artificial intelligent.</subtitle><author><name>Chenhui Liu</name></author><entry><title type="html">How to estimate GPU memory usage for LLMs</title><link href="http://localhost:4000/system/2024/01/18/GPU-Usage.html" rel="alternate" type="text/html" title="How to estimate GPU memory usage for LLMs" /><published>2024-01-18T00:00:00+08:00</published><updated>2024-01-18T00:00:00+08:00</updated><id>http://localhost:4000/system/2024/01/18/GPU-Usage</id><content type="html" xml:base="http://localhost:4000/system/2024/01/18/GPU-Usage.html"><![CDATA[<h1 id="llm显存占用预估方法">LLM显存占用预估方法</h1>
-
-<p>参考文献：<a href="https://zhuanlan.zhihu.com/p/31558973">科普帖：深度学习中GPU和显存分析</a></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-19T15:12:39+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">CH7au Tech. Blog</title><subtitle>Fantastic ideas on artificial intelligent.</subtitle><author><name>Chenhui Liu</name></author><entry><title type="html">How to Estimate GPU Memory Usage for LLMs</title><link href="http://localhost:4000/engineering/2024/01/18/GPU-Usage.html" rel="alternate" type="text/html" title="How to Estimate GPU Memory Usage for LLMs" /><published>2024-01-18T00:00:00+08:00</published><updated>2024-01-18T00:00:00+08:00</updated><id>http://localhost:4000/engineering/2024/01/18/GPU-Usage</id><content type="html" xml:base="http://localhost:4000/engineering/2024/01/18/GPU-Usage.html"><![CDATA[<h1 id="llm显存占用预估方法">LLM显存占用预估方法</h1>
 
 <p><strong>GPU计算单元</strong>类似CPU中的核，用来进行数值计算。衡量计算量的单位是FLOP：t_he number of floating-point multiplication-adds_，浮点数先乘后加算一个flop。计算能力越强大，速度越快。衡量计算能力的单位是flops： 每秒能执行的flop数量</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1*2+3                  1 FLOP
@@ -8,7 +6,6 @@
 </code></pre></div></div>
 
 <h2 id="存储指标">存储指标</h2>
-<hr />
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1Byte = 8 bit
 1K = 1024 Byte
@@ -30,7 +27,6 @@
 <p>K、M，G，T是以1024为底，而KB 、MB，GB，TB以1000为底。不过一般来说，在估算显存大小的时候，我们不需要严格的区分这二者。</p>
 
 <h2 id="以chatglm为例">以ChatGLM为例</h2>
-<hr />
 
 <blockquote>
   <p>显存占用 = 模型参数显存占用 + 优化器显存占用 + 样本显存占用</p>
@@ -58,23 +54,34 @@
 
 <h3 id="优化器的显存占用">优化器的显存占用</h3>
 
-<p>优化器如果是<strong>SGD</strong>
-$W_{t+1} = W_{t} - \alpha\triangledown F(W_{t})$
-可以看出来，除了保存$W$之外还要保存对应的梯度$\triangledown F(W)$，因此显存占用等于参数占用显存的两倍。</p>
+<p>优化器如果是<strong>SGD</strong></p>
 
-<p>优化器如果是<strong>Momentum-SGD</strong>
-$\begin{align}
-&amp; v_{t+1} = \rho v_{t} + \triangledown F(W_{t}) <br />
+\[W_{t+1} = W_{t} - \alpha\triangledown F(W_{t})\]
+
+<p>可以看出来，除了保存$W$之外还要保存对应的梯度$\triangledown F(W)$，因此显存占用等于参数占用显存的两倍。</p>
+
+<p>优化器如果是<strong>Momentum-SGD</strong></p>
+
+\[\begin{align}
+&amp; v_{t+1} = \rho v_{t} + \triangledown F(W_{t}) \\
 &amp; W_{t+1} = W{t} - \alpha v_{t+1}
-\end{align}$
-这时候还需要保存动量， 因此显存占用等于参数占用显存的三倍。</p>
+\end{align}\]
+
+<p>这时候还需要保存动量， 因此显存占用等于参数占用显存的三倍。</p>
 
 <p>优化器如果是<strong>Adam</strong>
 动量占用的显存更多，因此显存占用等于参数占用显存的四倍。</p>
 
 <h3 id="样本显存占用">样本显存占用</h3>
 
-<p>每个样本经过Embedding层后都会转换成对应的向量，这些向量也都会存储在显存中。</p>]]></content><author><name>Chenhui Liu</name></author><category term="System" /><summary type="html"><![CDATA[LLM显存占用预估方法]]></summary></entry><entry><title type="html">Diving into KBQA Task - A Manual to Start Your Experiments</title><link href="http://localhost:4000/llmxkg/2023/12/15/KBQA-Task.html" rel="alternate" type="text/html" title="Diving into KBQA Task - A Manual to Start Your Experiments" /><published>2023-12-15T00:00:00+08:00</published><updated>2023-12-15T00:00:00+08:00</updated><id>http://localhost:4000/llmxkg/2023/12/15/KBQA-Task</id><content type="html" xml:base="http://localhost:4000/llmxkg/2023/12/15/KBQA-Task.html"><![CDATA[<p>Knowledge base question answering (KBQA) aims to answer a question over a knowledge base (KB).</p>
+<p>每个样本经过Embedding层后都会转换成对应的向量，这些向量也都会存储在显存中。</p>
+
+<hr />
+<hr />
+<p><strong>Reference</strong></p>
+<ul>
+  <li><a href="https://zhuanlan.zhihu.com/p/31558973">科普帖：深度学习中GPU和显存分析</a></li>
+</ul>]]></content><author><name>Chenhui Liu</name></author><category term="Engineering" /><summary type="html"><![CDATA[LLM显存占用预估方法]]></summary></entry><entry><title type="html">Diving into KBQA Task - A Manual to Start Your Experiments</title><link href="http://localhost:4000/llmxkg/2023/12/15/KBQA-Task.html" rel="alternate" type="text/html" title="Diving into KBQA Task - A Manual to Start Your Experiments" /><published>2023-12-15T00:00:00+08:00</published><updated>2023-12-15T00:00:00+08:00</updated><id>http://localhost:4000/llmxkg/2023/12/15/KBQA-Task</id><content type="html" xml:base="http://localhost:4000/llmxkg/2023/12/15/KBQA-Task.html"><![CDATA[<p>Knowledge base question answering (KBQA) aims to answer a question over a knowledge base (KB).</p>
 
 <p><strong>Table of Contents</strong></p>
 <ul>
