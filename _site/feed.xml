@@ -1,21 +1,44 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-19T15:12:39+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">CH7au Tech. Blog</title><subtitle>Fantastic ideas on artificial intelligent.</subtitle><author><name>Chenhui Liu</name></author><entry><title type="html">How to Estimate GPU Memory Usage for LLMs</title><link href="http://localhost:4000/engineering/2024/01/18/GPU-Usage.html" rel="alternate" type="text/html" title="How to Estimate GPU Memory Usage for LLMs" /><published>2024-01-18T00:00:00+08:00</published><updated>2024-01-18T00:00:00+08:00</updated><id>http://localhost:4000/engineering/2024/01/18/GPU-Usage</id><content type="html" xml:base="http://localhost:4000/engineering/2024/01/18/GPU-Usage.html"><![CDATA[<h1 id="llm显存占用预估方法">LLM显存占用预估方法</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-21T19:04:30+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">CH7au Tech. Blog</title><subtitle>Fantastic ideas on artificial intelligent.</subtitle><author><name>Chenhui Liu</name></author><entry><title type="html">How to Estimate GPU Memory Usage for LLMs</title><link href="http://localhost:4000/engineering/2024/01/18/GPU-Usage.html" rel="alternate" type="text/html" title="How to Estimate GPU Memory Usage for LLMs" /><published>2024-01-18T00:00:00+08:00</published><updated>2024-01-18T00:00:00+08:00</updated><id>http://localhost:4000/engineering/2024/01/18/GPU-Usage</id><content type="html" xml:base="http://localhost:4000/engineering/2024/01/18/GPU-Usage.html"><![CDATA[<ul>
+  <li><a href="#llm-gpu-memory-usage-estimation">LLM GPU Memory Usage Estimation</a>
+    <ul>
+      <li><a href="#storage">Storage</a>
+        <ul>
+          <li><a href="#k-m-g-t-storage-unit">K, M, G Storage Unit</a></li>
+          <li><a href="#kb-mb-gb-storage-unit">KB, MB, GB Storage Unit</a></li>
+        </ul>
+      </li>
+      <li><a href="#take-chatglm-as-an-example">Take ChatGLM as an Example</a>
+        <ul>
+          <li><a href="#model-param-usage">Model Param Usage</a></li>
+          <li><a href="#optimizer-usage">Optimizer Usage</a></li>
+          <li><a href="#data-batch-usage">Data Batch Usage</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
-<p><strong>GPU计算单元</strong>类似CPU中的核，用来进行数值计算。衡量计算量的单位是FLOP：t_he number of floating-point multiplication-adds_，浮点数先乘后加算一个flop。计算能力越强大，速度越快。衡量计算能力的单位是flops： 每秒能执行的flop数量</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1*2+3                  1 FLOP
-1*2 + 3*4 + 4*5        3 FLOP
+<h1 id="llm-gpu-memory-usage-estimation">LLM GPU Memory Usage Estimation</h1>
+
+<p>FLOPs： <strong>FL</strong>oating-point <strong>O</strong>perations <strong>P</strong>er second</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1*2+0                          1 FLOP
+(1*2 + (3*4 + (4*5+0)))        3 FLOP
 </code></pre></div></div>
 
-<h2 id="存储指标">存储指标</h2>
+<h2 id="storage">Storage</h2>
+
+<h3 id="k-m-g-storage-unit"><code class="language-plaintext highlighter-rouge">K, M, G</code> Storage Unit</h3>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1Byte = 8 bit
 1K = 1024 Byte
 1M = 1024 K
 1G = 1024 M
-1T = 1024 G
 
 10 K = 10*1024 Byte
 </code></pre></div></div>
-<p>除了K、M，G，T等之外，我们常用的还有KB 、MB，GB，TB 。二者有细微的差别。</p>
+
+<h3 id="kb-mb-gb-storage-unit"><code class="language-plaintext highlighter-rouge">KB, MB, GB</code> Storage Unit</h3>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1Byte = 8 bit
 1KB = 1000 Byte
 1MB = 1000 KB
@@ -24,35 +47,35 @@
 
 10 KB = 10000 Byte
 </code></pre></div></div>
-<p>K、M，G，T是以1024为底，而KB 、MB，GB，TB以1000为底。不过一般来说，在估算显存大小的时候，我们不需要严格的区分这二者。</p>
 
-<h2 id="以chatglm为例">以ChatGLM为例</h2>
+<h2 id="take-chatglm-as-an-example">Take ChatGLM as an Example</h2>
 
 <blockquote>
-  <p>显存占用 = 模型参数显存占用 + 优化器显存占用 + 样本显存占用</p>
+  <p>Total Memory Usage = Model Param Usage + Optimizer Usage + Data Batch Usage</p>
 </blockquote>
 
-<h3 id="模型参数显存占用">模型参数显存占用</h3>
+<h3 id="model-param-usage">Model Param Usage</h3>
 
 <table>
   <thead>
     <tr>
-      <th><strong>量化等级</strong></th>
+      <th><strong>Quantization Level</strong></th>
       <th>FP16</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>参数量</strong></td>
-      <td>62亿</td>
+      <td><strong>Param Size</strong></td>
+      <td>6.2 B</td>
     </tr>
   </tbody>
 </table>
 
-<p>1 FP16 = 2 Byte
-6.2B * 2Byte = 12.4GB内存</p>
+<p>1 FP16 = 2 Byte</p>
 
-<h3 id="优化器的显存占用">优化器的显存占用</h3>
+<p>6.2B * 2Byte = 12.4GB</p>
+
+<h3 id="optimizer-usage">Optimizer Usage</h3>
 
 <p>优化器如果是<strong>SGD</strong></p>
 
@@ -72,7 +95,7 @@
 <p>优化器如果是<strong>Adam</strong>
 动量占用的显存更多，因此显存占用等于参数占用显存的四倍。</p>
 
-<h3 id="样本显存占用">样本显存占用</h3>
+<h3 id="data-batch-usage">Data Batch Usage</h3>
 
 <p>每个样本经过Embedding层后都会转换成对应的向量，这些向量也都会存储在显存中。</p>
 
@@ -80,8 +103,8 @@
 <hr />
 <p><strong>Reference</strong></p>
 <ul>
-  <li><a href="https://zhuanlan.zhihu.com/p/31558973">科普帖：深度学习中GPU和显存分析</a></li>
-</ul>]]></content><author><name>Chenhui Liu</name></author><category term="Engineering" /><summary type="html"><![CDATA[LLM显存占用预估方法]]></summary></entry><entry><title type="html">Diving into KBQA Task - A Manual to Start Your Experiments</title><link href="http://localhost:4000/llmxkg/2023/12/15/KBQA-Task.html" rel="alternate" type="text/html" title="Diving into KBQA Task - A Manual to Start Your Experiments" /><published>2023-12-15T00:00:00+08:00</published><updated>2023-12-15T00:00:00+08:00</updated><id>http://localhost:4000/llmxkg/2023/12/15/KBQA-Task</id><content type="html" xml:base="http://localhost:4000/llmxkg/2023/12/15/KBQA-Task.html"><![CDATA[<p>Knowledge base question answering (KBQA) aims to answer a question over a knowledge base (KB).</p>
+  <li><a href="https://zhuanlan.zhihu.com/p/31558973">知乎：深度学习中GPU和显存分析</a></li>
+</ul>]]></content><author><name>Chenhui Liu</name></author><category term="Engineering" /><summary type="html"><![CDATA[LLM GPU Memory Usage Estimation Storage K, M, G Storage Unit KB, MB, GB Storage Unit Take ChatGLM as an Example Model Param Usage Optimizer Usage Data Batch Usage]]></summary></entry><entry><title type="html">Diving into KBQA Task - A Manual to Start Your Experiments</title><link href="http://localhost:4000/llmxkg/2023/12/15/KBQA-Task.html" rel="alternate" type="text/html" title="Diving into KBQA Task - A Manual to Start Your Experiments" /><published>2023-12-15T00:00:00+08:00</published><updated>2023-12-15T00:00:00+08:00</updated><id>http://localhost:4000/llmxkg/2023/12/15/KBQA-Task</id><content type="html" xml:base="http://localhost:4000/llmxkg/2023/12/15/KBQA-Task.html"><![CDATA[<p>Knowledge base question answering (KBQA) aims to answer a question over a knowledge base (KB).</p>
 
 <p><strong>Table of Contents</strong></p>
 <ul>
